@@ -1,0 +1,6 @@
+#!/bin/bash
+pathToFile=$(dirname $1)
+fileName=$(basename $1)
+fileName=${fileName%.*}
+./src/JVM $fileName < $1 > $pathToFile/$fileName.j
+java -jar lib/jasmin.jar -d $pathToFile $pathToFile/$fileName.j 

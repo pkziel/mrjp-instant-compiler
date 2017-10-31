@@ -1,1 +1,1 @@
-# mrjp-Instant-compiler
+A compiler to JVM and LLVM for the language Instant

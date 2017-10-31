@@ -6,21 +6,8 @@ expression - prints its value on stdout,
 assignment of the form variable = expression - assigns value of the expression to he variable in the LHS; doe snot print anything.
 Expressions are built from integer literals, variables and arithmetic operators. Evaluation order within an expression is not predefined (you can choose whatever order suits you best)
 
-BNFC syntax:
+BNFC syntax ins src/Instant.cf
 
-Prog. Program ::= [Stmt] ;
-SAss. Stmt ::= Ident "=" Exp;
-SExp. Stmt ::= Exp ;
-separator Stmt ";" ;
-
-ExpAdd.            Exp1   ::= Exp2 "+"  Exp1 ;
-ExpSub.            Exp2   ::= Exp2 "-"  Exp3 ;
-ExpMul.            Exp3   ::= Exp3 "*"  Exp4 ;
-ExpDiv.            Exp3   ::= Exp3 "/"  Exp4 ;
-ExpLit.            Exp4   ::= Integer ;
-ExpVar.            Exp4   ::= Ident ;
-coercions Exp 4;
-Note:
 
 addition binds to the right
 addition and multiplication are commutative but not associative

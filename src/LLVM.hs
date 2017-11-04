@@ -14,7 +14,7 @@ generate (x:s) store n llvm = llvm ++ generate s new_store new_n new_lines
 generate _ store n llvm = llvm
 
 exec :: Stmt -> Store -> Integer -> (Integer, Store, [String])
-exec (SAss x exp) s n = (new_n, (Map.insert x new_n s), new_lines)
+exec (SAss x exp) s n = ( (new_n+1), (Map.insert x (new_n+1) s), (new_lines ++ ["    %t" ++ show (new_n+1) ++ " =  add i32 " ++ last ++ ", 0" ]) )
     where (new_n, new_lines, last) = eval exp s n
 exec (SExp exp) s n = (new_n, s, new_lines ++ ["    call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], " ++
     "[4 x i8]* @.str, i32 0, i32 0), i32 " ++ last ++ ")"])
@@ -25,7 +25,7 @@ eval exp s n = case exp of
     ExpAdd exp0 exp -> binoperator exp0 exp s n "add"
     ExpMul exp0 exp -> binoperator exp0 exp s n "mul"
     ExpSub exp0 exp -> binoperator exp0 exp s n "sub"
-    ExpDiv exp0 exp -> binoperator exp0 exp s n "udiv"
+    ExpDiv exp0 exp -> binoperator exp0 exp s n "sdiv"
     -- ExpLit const -> (n+1, ["    %t" ++ show (n+1) ++ " = add i32 " ++ show const ++ ", 0"])
     ExpLit const -> (n, [], show const)
     ExpVar x -> (n, [], "%t" ++ show number)

@@ -6,7 +6,7 @@ expression - prints its value on stdout,
 assignment of the form variable = expression - assigns value of the expression to he variable in the LHS; doe snot print anything.
 Expressions are built from integer literals, variables and arithmetic operators. Evaluation order within an expression is not predefined (you can choose whatever order suits you best)
 
-BNFC syntax ins src/Instant.cf
+BNFC syntax is in src/Instant.cf
 
 
 addition binds to the right
